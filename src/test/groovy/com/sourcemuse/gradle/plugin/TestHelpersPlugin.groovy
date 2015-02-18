@@ -5,7 +5,7 @@ import static com.sourcemuse.gradle.plugin.MongoUtils.mongoInstanceRunningOnConf
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class PluginForTests implements Plugin<Project> {
+class TestHelpersPlugin implements Plugin<Project> {
 
     static final TEST_STOP_MONGO_DB = 'testStopMongoDb'
     static final TEST_START_MONGO_DB = 'testStartMongoDb'
@@ -21,5 +21,9 @@ class PluginForTests implements Plugin<Project> {
         project.task(dependsOn: 'startManagedMongoDb', TEST_START_MANAGED_MONGO_DB) << performMongoCheck
         project.task(dependsOn: 'startMongoDb', TEST_START_MONGO_DB) << performMongoCheck
         project.task(dependsOn: ['startMongoDb', 'stopMongoDb'], TEST_STOP_MONGO_DB)
+
+//        project.extensions.mongoInstanceRunningOnConfiguredPort = { mongoInstanceRunningOnConfiguredPort(project) }
+
+        project.tasks.whenTaskAdded { task -> task.doLast { println(mongoInstanceRunningOnConfiguredPort(project) ? MONGO_RUNNING_FLAG : MONGO_NOT_RUNNING_FLAG) } }
     }
 }

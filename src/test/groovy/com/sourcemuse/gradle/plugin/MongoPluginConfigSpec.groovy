@@ -5,7 +5,7 @@ import static com.sourcemuse.gradle.plugin.MongoUtils.makeJournaledWrite
 import static com.sourcemuse.gradle.plugin.MongoUtils.ensureMongoIsStopped
 import static com.sourcemuse.gradle.plugin.MongoUtils.mongoInstanceRunning
 import static com.sourcemuse.gradle.plugin.MongoUtils.getMongoVersionRunning
-import static PluginForTests.TEST_START_MONGO_DB
+import static TestHelpersPlugin.TEST_START_MONGO_DB
 
 import org.gradle.testkit.functional.GradleRunnerFactory
 import org.junit.Rule
